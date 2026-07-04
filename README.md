@@ -50,11 +50,12 @@ Sn1per orchestrates 90+ third-party tools, ships with 600+ exploits and 10,000+ 
 
 ## What Sn1per Is For
 
-Sn1per ships as one platform that covers three jobs offensive security teams otherwise stitch together from a dozen tools:
+Sn1per ships as one platform that covers the core jobs offensive security teams otherwise stitch together from a dozen tools:
 
 - **[External Attack Surface Management](https://sn1persecurity.com/wordpress/external-attack-surface-management-with-sn1per/)** - continuous discovery, monitoring, and active exploitation of every internet-facing asset your organization owns, including the ones nobody on your team knows about.
 - **[Continuous Attack Surface Management](https://sn1persecurity.com/wordpress/continuous-attack-surface-management-with-sn1per-professional/)** - daily-cadence rescans that diff yesterday's surface against today's so new exposures hit your SOC within hours, not the next quarterly pentest.
 - **[Automated Penetration Testing](https://sn1persecurity.com/wordpress/automated-penetration-testing/)** - 600+ exploits and 10,000+ detections orchestrated as a single workflow, with active verification eliminating the false positives version-only scanners ship as "critical."
+- **[Reconnaissance & Attack Surface Discovery](https://sn1persecurity.com/wordpress/reconnaissance-methodology/)** - the full phased recon workflow, from OSINT and subdomain enumeration through live-host discovery and fingerprinting, run as one automated pass.
 
 ## What's New in 2026
 
@@ -85,7 +86,7 @@ Sn1per ships as one platform that covers three jobs offensive security teams oth
 
 ## Editions & Pricing
 
-The Community Edition is free and lives in this repository. The Professional and Enterprise editions add a Web UI, commercial integrations, and email support.
+The [Community Edition](https://sn1persecurity.com/wordpress/sn1per-community-edition/) is free and lives in this repository. The Professional and Enterprise editions add a Web UI, commercial integrations, and email support.
 
 | | **Sn1per Professional** | **Sn1per Enterprise** |
 |---|---|---|
@@ -319,10 +320,25 @@ Sn1per ships with native integrations for **90+ tools and services**. Featured p
 
 ### Guides & deep dives (2026)
 
-- [Red Team Attack Surface Management](https://sn1persecurity.com/wordpress/red-team-attack-surface-management/) - running Sn1per as a continuous red-team and adversarial-exposure-validation workflow
+**Reconnaissance**
+
+- [Reconnaissance Methodology](https://sn1persecurity.com/wordpress/reconnaissance-methodology/) - Sn1per's full recon-to-report workflow, phase by phase, from OSINT to reporting
+- [Subdomain Enumeration](https://sn1persecurity.com/wordpress/subdomain-enumeration/) - passive sources, active brute force, and subdomain-takeover checks
+- [Active Reconnaissance](https://sn1persecurity.com/wordpress/active-reconnaissance/) - port scanning, service and technology fingerprinting, and endpoint discovery
+
+**Penetration testing**
+
 - [Automated Penetration Testing](https://sn1persecurity.com/wordpress/automated-penetration-testing/) - the method, the tooling, and the continuous-testing model
-- [On-Prem External Attack Surface Management](https://sn1persecurity.com/wordpress/best-on-prem-external-attack-surface-management-platform/) - self-hosted, air-gapped ASM with zero data leaving your perimeter
+- [Best Automated Pentest Tools](https://sn1persecurity.com/wordpress/automated-pentest-tools/) - the 2026 open-source and all-in-one pentest tooling landscape
+- [Continuous Penetration Testing (PTaaS)](https://sn1persecurity.com/wordpress/continuous-penetration-testing/) - the always-on model beyond the once-a-year pentest
+
+**Attack surface management**
+
+- [Red Team Attack Surface Management](https://sn1persecurity.com/wordpress/red-team-attack-surface-management/) - running Sn1per as a continuous red-team and adversarial-exposure-validation workflow
+- [Adversarial Exposure Validation](https://sn1persecurity.com/wordpress/adversarial-exposure-validation/) - proving which exposures are actually exploitable, not just present
 - [Continuous Attack Surface Testing](https://sn1persecurity.com/wordpress/continuous-attack-surface-testing/) - daily-cadence rescans that diff yesterday's surface against today's
+- [On-Prem External Attack Surface Management](https://sn1persecurity.com/wordpress/best-on-prem-external-attack-surface-management-platform/) - self-hosted, air-gapped ASM with zero data leaving your perimeter
+- [Open-Source Self-Hosted ASM Tools](https://sn1persecurity.com/wordpress/open-source-self-hosted-attack-surface-management-tools/) - the self-hosted attack surface management tooling landscape
 - [External Attack Surface Management with Sn1per](https://sn1persecurity.com/wordpress/external-attack-surface-management-with-sn1per/) - background reading on the ASM use case
 
 [All releases & blog posts →](https://sn1persecurity.com/wordpress/blog/)

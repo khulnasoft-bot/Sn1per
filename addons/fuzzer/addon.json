@@ -1,0 +1,10 @@
+{
+  "name": "fuzzer",
+  "version": "1.0.0",
+  "description": "Web fuzzing framework — directory, parameter, subdomain, and vhost fuzzing",
+  "author": "Sn1per",
+  "dependencies": [],
+  "tools": ["ffuf", "gobuster", "wfuzz"],
+  "modes": ["fuzz-directory", "fuzz-parameters", "fuzz-vhost"],
+  "plugins": ["ffuf", "gobuster", "wfuzz"]
+}

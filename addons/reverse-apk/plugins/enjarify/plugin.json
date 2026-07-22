@@ -1,0 +1,8 @@
+{
+  "name": "enjarify",
+  "version": "1.0.0",
+  "description": "Enjarify Dalvik bytecode to Java bytecode converter",
+  "tools": ["enjarify", "python3"],
+  "variables": ["APK_PATH"],
+  "config_toggles": []
+}

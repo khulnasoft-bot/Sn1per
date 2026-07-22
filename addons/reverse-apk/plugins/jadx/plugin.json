@@ -1,0 +1,8 @@
+{
+  "name": "jadx",
+  "version": "1.0.0",
+  "description": "Jadx Java decompiler for APK source code analysis",
+  "tools": ["jadx", "java"],
+  "variables": ["APK_PATH"],
+  "config_toggles": ["APK_DECOMPILE_SOURCES"]
+}

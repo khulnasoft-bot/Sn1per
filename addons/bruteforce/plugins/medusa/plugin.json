@@ -1,0 +1,8 @@
+{
+  "name": "medusa",
+  "version": "1.0.0",
+  "description": "Medusa parallel brute-force",
+  "tools": ["medusa"],
+  "variables": ["TARGET"],
+  "config_toggles": []
+}

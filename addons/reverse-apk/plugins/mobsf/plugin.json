@@ -1,0 +1,8 @@
+{
+  "name": "mobsf",
+  "version": "1.0.0",
+  "description": "Mobile Security Framework (MobSF) REST API integration for dynamic/static Android analysis",
+  "tools": ["curl"],
+  "variables": ["MOBSF_URL", "MOBSF_API_KEY"],
+  "config_toggles": []
+}

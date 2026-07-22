@@ -1,5 +1,8 @@
 # STEALTH MODE #####################################################################################################
 if [[ "$MODE" = "stealth" ]]; then
+  MODE_NAME="stealth"
+  MODE_DESCRIPTION="Stealth reconnaissance and vulnerability scan"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ "$REPORT" = "1" ]]; then
     args="-t $TARGET"
     if [[ "$OSINT" = "1" ]]; then

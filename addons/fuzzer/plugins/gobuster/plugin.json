@@ -1,0 +1,8 @@
+{
+  "name": "gobuster",
+  "version": "1.0.0",
+  "description": "GoBuster directory/file/dns brute-force",
+  "tools": ["gobuster"],
+  "variables": ["TARGET"],
+  "config_toggles": ["GOBUSTER"]
+}

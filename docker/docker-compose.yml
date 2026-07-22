@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  sniper-cli:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: sn1per:latest
+    container_name: sn1per-cli
+    command: ["--help"]
+    volumes:
+      - ../loot:/opt/sniper/loot
+      - ../conf:/opt/sniper/conf:ro
+    environment:
+      - SNIPER_HOME=/opt/sniper
+      - INSTALL_DIR=/opt/sniper
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    network_mode: host
+
+  sniper-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: sn1per:latest
+    container_name: sn1per-api
+    command: ["-m", "api-server", "--api-port", "8080"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../loot:/opt/sniper/loot
+      - ../conf:/opt/sniper/conf:ro
+    environment:
+      - SNIPER_HOME=/opt/sniper
+      - INSTALL_DIR=/opt/sniper
+      - API_PORT=8080
+      - API_HOST=0.0.0.0
+      - API_AUTH_TOKEN=${API_AUTH_TOKEN:-}
+    cap_add:
+      - NET_ADMIN
+    network_mode: host

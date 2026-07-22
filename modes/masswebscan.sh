@@ -1,5 +1,8 @@
-# MASSWEB MODE #####################################################################################################
+# MASSWEBSCAN MODE #################################################################################################
 if [[ "$MODE" = "masswebscan" ]]; then
+  MODE_NAME="masswebscan"
+  MODE_DESCRIPTION="Mass web vulnerability scan across multiple targets"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ -z "$FILE" ]]; then
     logo
     echo "You need to specify a list of targets (ie. -f <targets.txt>) to scan."

@@ -1,0 +1,8 @@
+{
+  "name": "hydra",
+  "version": "1.0.0",
+  "description": "THC-Hydra multi-service brute-force",
+  "tools": ["hydra"],
+  "variables": ["TARGET"],
+  "config_toggles": []
+}

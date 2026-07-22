@@ -1,5 +1,8 @@
 # AIRSTRIKE MODE #####################################################################################################
 if [[ "$MODE" = "airstrike" ]]; then
+  MODE_NAME="airstrike"
+  MODE_DESCRIPTION="Automated mass reconnaissance and vulnerability scan"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ -z "$FILE" ]]; then
     logo
     echo "You need to specify a list of targets (ie. -f <targets.txt>) to scan."

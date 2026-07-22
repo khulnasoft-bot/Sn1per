@@ -1,0 +1,8 @@
+{
+  "name": "cmdi-payloads",
+  "version": "1.0.0",
+  "description": "Custom command injection payload fuzzer for blind/time-based/OOB detection",
+  "tools": [],
+  "variables": ["TARGET"],
+  "config_toggles": ["CMD_EXEC_CHECK"]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "nessus6",
+  "version": "1.0.0",
+  "description": "Nessus v6/v8 REST API client",
+  "tools": ["curl"],
+  "variables": ["NESSUS_HOST", "NESSUS_USERNAME", "NESSUS_PASSWORD"],
+  "config_toggles": ["NESSUS"]
+}

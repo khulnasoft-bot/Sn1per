@@ -1,0 +1,10 @@
+{
+  "name": "threat-intel",
+  "version": "1.0.0",
+  "description": "Threat intelligence enrichment via external feeds (AlienVault OTX, VirusTotal, ThreatFox, AbuseIPDB)",
+  "author": "Sn1per",
+  "dependencies": [],
+  "tools": ["curl"],
+  "modes": ["threat-intel"],
+  "plugins": ["otx", "virustotal", "threatfox"]
+}

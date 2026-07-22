@@ -1,0 +1,10 @@
+{
+  "name": "reverse-apk",
+  "version": "1.0.0",
+  "description": "Android APK reverse engineering — decompilation, manifest analysis, hardcoded secrets detection, MobSF integration",
+  "author": "Sn1per",
+  "dependencies": ["apktool", "jadx"],
+  "tools": ["apktool", "jadx", "java", "python3"],
+  "modes": ["reverse-apk", "apk-static"],
+  "plugins": ["apktool", "jadx", "mobsf", "enjarify"]
+}

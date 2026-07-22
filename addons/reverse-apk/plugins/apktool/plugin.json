@@ -1,0 +1,8 @@
+{
+  "name": "apktool",
+  "version": "1.0.0",
+  "description": "APKTool wrapper for APK decompilation and rebuilding",
+  "tools": ["apktool", "java"],
+  "variables": ["APK_PATH"],
+  "config_toggles": ["APK_DECOMPILE_SOURCES"]
+}

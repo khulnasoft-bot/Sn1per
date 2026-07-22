@@ -17,6 +17,7 @@ source "$INSTALL_DIR/lib/json.sh"
 source "$INSTALL_DIR/lib/reports.sh"
 source "$INSTALL_DIR/lib/sn1per-plugins.sh"
 source "$INSTALL_DIR/lib/findings.sh"
+source "$INSTALL_DIR/lib/sn1per-addons.sh"
 
 sniper_require_root
 
@@ -49,6 +50,9 @@ sniper_validate_config "${MODE:-normal}"
 sniper_findings_init "$LOOT_DIR"
 
 sniper_plugin_discover "$INSTALL_DIR/plugins"
+
+sniper_addon_discover "$INSTALL_DIR/addons"
+sniper_addon_load_all
 
 if [[ ! -f /tmp/update-check.txt ]]; then
   sniper_check_online
@@ -98,6 +102,9 @@ source "$INSTALL_DIR/modes/stealth.sh"
 source "$INSTALL_DIR/modes/airstrike.sh"
 source "$INSTALL_DIR/modes/nuke.sh"
 source "$INSTALL_DIR/modes/normal.sh"
+
+sniper_addon_source_modes
+sniper_addon_source_plugins
 
 rm -f /tmp/update-check.txt 2>/dev/null
 exit 0

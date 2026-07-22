@@ -1,0 +1,10 @@
+{
+  "name": "port-scanner",
+  "version": "1.0.0",
+  "description": "Masscan + Nmap hybrid port scanning with service detection and NSE vulnerability scripts",
+  "author": "Sn1per",
+  "dependencies": ["masscan"],
+  "tools": ["nmap", "masscan"],
+  "modes": ["portscan-massive", "portscan-quick"],
+  "plugins": ["masscan", "nmap-vuln"]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "wfuzz",
+  "version": "1.0.0",
+  "description": "Wfuzz web fuzzer",
+  "tools": ["wfuzz"],
+  "variables": ["TARGET"],
+  "config_toggles": []
+}

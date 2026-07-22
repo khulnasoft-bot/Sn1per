@@ -1,5 +1,8 @@
 # WEBPORTHTTP MODE #####################################################################################################
 if [[ "$MODE" = "webporthttp" ]]; then
+  MODE_NAME="webporthttp"
+  MODE_DESCRIPTION="HTTP web application scan on specific port"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ "$REPORT" = "1" ]]; then
     if [[ ! -z "$WORKSPACE" ]]; then
       args="$args -w $WORKSPACE"

@@ -1,5 +1,8 @@
 # DISCOVER MODE #####################################################################################################
 if [[ "$MODE" = "discover" ]]; then
+  MODE_NAME="discover"
+  MODE_DESCRIPTION="Network discovery and host enumeration"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ "$REPORT" = "1" ]]; then
     if [[ ! -z "$WORKSPACE" ]]; then
       WORKSPACE="$(echo $WORKSPACE | tr / -)"

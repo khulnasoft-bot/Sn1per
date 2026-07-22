@@ -1,5 +1,8 @@
 # FULLPORTONLY MODE
 if [[ "$MODE" = "fullportonly" ]]; then
+  MODE_NAME="fullportonly"
+  MODE_DESCRIPTION="Full TCP port scan only"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ "$REPORT" = "1" ]]; then
     args="-t $TARGET"
     if [[ ! -z "$WORKSPACE" ]]; then

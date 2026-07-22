@@ -1,0 +1,8 @@
+{
+  "name": "metasploit-pwn",
+  "version": "1.0.0",
+  "description": "Metasploit resource script-based mass exploitation",
+  "tools": ["msfconsole"],
+  "variables": ["TARGET", "MSF_LHOST", "MSF_LPORT"],
+  "config_toggles": ["METASPLOIT_EXPLOIT"]
+}

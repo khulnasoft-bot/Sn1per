@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  # MobSF for ReverseAPK add-on Android analysis
+  mobsf:
+    image: opensecurity/mobile-security-framework-mobsf:latest
+    container_name: sn1per-mobsf
+    ports:
+      - "8000:8000"
+    volumes:
+      - mobsf_data:/home/mobsf/.MobSF
+    environment:
+      - MOBSF_API_KEY=${MOBSF_API_KEY:-}
+    restart: unless-stopped
+
+  # Redis for job queue (optional, for distributed scanning)
+  redis:
+    image: redis:7-alpine
+    container_name: sn1per-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  mobsf_data:

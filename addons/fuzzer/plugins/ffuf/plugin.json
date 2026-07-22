@@ -1,0 +1,8 @@
+{
+  "name": "ffuf",
+  "version": "1.0.0",
+  "description": "FFUF web fuzzer wrapper",
+  "tools": ["ffuf"],
+  "variables": ["TARGET"],
+  "config_toggles": []
+}

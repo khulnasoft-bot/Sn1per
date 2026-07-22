@@ -1,0 +1,8 @@
+{
+  "name": "virustotal",
+  "version": "1.0.0",
+  "description": "VirusTotal domain/IP/file intelligence lookup",
+  "tools": ["curl"],
+  "variables": ["TARGET", "VIRUSTOTAL_API_KEY"],
+  "config_toggles": ["THREAT_INTEL_CHECK"]
+}

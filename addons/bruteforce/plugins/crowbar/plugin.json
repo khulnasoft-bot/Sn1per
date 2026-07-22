@@ -1,0 +1,8 @@
+{
+  "name": "crowbar",
+  "version": "1.0.0",
+  "description": "Crowbar SSH key brute-force",
+  "tools": ["crowbar"],
+  "variables": ["TARGET"],
+  "config_toggles": []
+}

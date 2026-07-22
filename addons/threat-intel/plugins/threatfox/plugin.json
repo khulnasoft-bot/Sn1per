@@ -1,0 +1,8 @@
+{
+  "name": "threatfox",
+  "version": "1.0.0",
+  "description": "ThreatFox (abuse.ch) IOC lookup",
+  "tools": ["curl"],
+  "variables": ["TARGET", "THREATFOX_API_KEY"],
+  "config_toggles": ["THREAT_INTEL_CHECK"]
+}

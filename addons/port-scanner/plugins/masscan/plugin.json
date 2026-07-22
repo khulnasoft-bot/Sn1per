@@ -1,0 +1,8 @@
+{
+  "name": "masscan",
+  "version": "1.0.0",
+  "description": "Masscan high-speed port scanner wrapper",
+  "tools": ["masscan"],
+  "variables": ["TARGET"],
+  "config_toggles": []
+}

@@ -1,5 +1,8 @@
 # FLYOVER MODE ######################################################################################################
 if [[ "$MODE" = "flyover" ]]; then
+  MODE_NAME="flyover"
+  MODE_DESCRIPTION="Quick reconnaissance flyover scan of multiple targets"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ -z "$FILE" ]]; then
     logo
     echo "You need to specify a list of targets (ie. -f <targets.txt>) to scan."

@@ -1,0 +1,10 @@
+{
+  "name": "command-exec",
+  "version": "2.0.0",
+  "description": "Remote command execution detection and exploitation framework",
+  "author": "Sn1per",
+  "dependencies": [],
+  "tools": ["commix", "curl"],
+  "modes": ["command-inject"],
+  "plugins": ["commix", "cmdi-payloads"]
+}

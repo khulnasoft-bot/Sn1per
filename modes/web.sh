@@ -1,5 +1,8 @@
 # WEB MODE #############################################################################################################
 if [[ "$MODE" = "web" ]]; then
+  MODE_NAME="web"
+  MODE_DESCRIPTION="Web application reconnaissance and vulnerability scanning"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ "$REPORT" = "1" ]]; then
     if [[ ! -z "$WORKSPACE" ]]; then
       args="$args -w $WORKSPACE"

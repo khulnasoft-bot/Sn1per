@@ -13,6 +13,7 @@ source "$SN1PER_ROOT/lib/mode-skeleton.sh"
 source "$SN1PER_ROOT/lib/json.sh"
 source "$SN1PER_ROOT/lib/findings.sh"
 source "$SN1PER_ROOT/lib/sn1per-plugins.sh"
+source "$SN1PER_ROOT/lib/sn1per-addons.sh"
 
 FIXTURES_DIR="$SN1PER_ROOT/tests/fixtures"
 

@@ -1,4 +1,7 @@
 if [[ "$MODE" = "webscan" ]]; then
+  MODE_NAME="webscan"
+  MODE_DESCRIPTION="Web vulnerability scan with Burp, ZAP, Arachni, and Nuclei"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
 	echo -e "$OKRED                ____               $RESET"
 	echo -e "$OKRED    _________  /  _/___  ___  _____$RESET"
 	echo -e "$OKRED   / ___/ __ \ / // __ \/ _ \/ ___/$RESET"

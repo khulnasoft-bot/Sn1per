@@ -100,6 +100,26 @@ $star UPDATE SNIPER
 $star VERSION
  sniper -v|--version
 
+$star ADD-ONS
+ --addon-list                              list installed add-ons
+ --addon-install <name>                    install add-on dependencies
+ --apk <path>                              reverse APK (requires reverse-apk add-on)
+ --threat-intel                            enable threat intel enrichment
+ --bruteforce                              enable enhanced brute-force scan
+ --nessus                                  launch Nessus scan
+ --api                                     start REST API server
+ --api-port <port>                         API server port (default: 8080)
+ sniper -m command-inject -t <TARGET>      command injection scan
+ sniper -m threat-intel -t <TARGET>        threat intel enrichment
+ sniper -m portscan-massive -t <TARGET>    masscan all ports
+ sniper -m portscan-quick -t <TARGET>      quick port scan
+ sniper -m fuzz-directory -t <TARGET>      directory fuzzing
+ sniper -m fuzz-parameters -t <TARGET>     parameter fuzzing
+ sniper -m fuzz-vhost -t <TARGET>          vhost fuzzing
+ sniper -m nessus-scan -t <TARGET>         Nessus scan
+ sniper -m masspwn -f targets.txt          mass exploitation
+ sniper --apk app.apk                      reverse APK
+ sniper --api                              start API server
 
 EOHELP
   exit
@@ -136,6 +156,7 @@ sniper_parse_args() {
   AUTO_BRUTE="0"; FULLNMAPSCAN="0"; OSINT="0"; RECON="0"
   REIMPORT="0"; REIMPORT_ALL="0"; RELOAD="0"
   REPORT="1"; LOOT="1"; NOLOOT="0"; UPDATE="0"
+  APK_PATH=""
 
   POSITIONAL=()
   while [[ $# -gt 0 ]]; do
@@ -216,6 +237,28 @@ sniper_parse_args() {
                     echo "Done!"; exit ;;
       --status)     sniper_status; exit ;;
       -u|--update)  UPDATE="1"; sniper_update; exit ;;
+      --addon-list)  logo
+                     echo -e "$OKBLUE[*]$RESET Installed add-ons:"
+                     sniper_addon_list "$INSTALL_DIR/addons"
+                     echo ""
+                     echo -e "  Disable an add-on: set ${OKGREEN}ADDON_<NAME>_ENABLED=0$RESET in config"
+                     exit ;;
+      --addon-install)
+                     local a_name="$2"
+                     if [[ -z "$a_name" ]]; then
+                       echo "Usage: sniper --addon-install <name>"
+                       echo "Available:"
+                       sniper_addon_list "$INSTALL_DIR/addons"
+                       exit 1
+                     fi
+                     sniper_addon_install "$a_name"
+                     exit ;;
+      --apk)         APK_PATH="$2"; MODE="reverse-apk"; shift 2 ;;
+      --threat-intel) THREAT_INTEL_CHECK="1"; MODE="${MODE:-threat-intel}" ;;
+      --bruteforce)  MODE="${MODE:-bruteforce-enhanced}" ;;
+      --nessus)      MODE="${MODE:-nessus-scan}" ;;
+      --api)         MODE="api-server"; shift ;;
+      --api-port)    API_PORT="$2"; shift 2 ;;
       *)            echo "Unknown option $1"; exit 1 ;;
     esac
   done

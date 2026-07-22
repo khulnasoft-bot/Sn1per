@@ -1,0 +1,10 @@
+{
+  "name": "nessus",
+  "version": "2.0.0",
+  "description": "Nessus vulnerability scanner management via REST API — create, launch, poll, and import scans",
+  "author": "Sn1per",
+  "dependencies": [],
+  "tools": ["curl"],
+  "modes": ["nessus-scan"],
+  "plugins": ["nessus6", "nessus10"]
+}

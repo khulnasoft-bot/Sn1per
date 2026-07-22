@@ -1,0 +1,8 @@
+{
+  "name": "otx",
+  "version": "1.0.0",
+  "description": "AlienVault OTX threat intelligence feed",
+  "tools": ["curl"],
+  "variables": ["TARGET", "OTX_API_KEY"],
+  "config_toggles": ["THREAT_INTEL_CHECK"]
+}

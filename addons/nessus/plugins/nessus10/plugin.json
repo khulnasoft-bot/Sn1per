@@ -1,0 +1,8 @@
+{
+  "name": "nessus10",
+  "version": "1.0.0",
+  "description": "Nessus v10 REST API client with API keys",
+  "tools": ["curl"],
+  "variables": ["NESSUS_HOST", "NESSUS_ACCESS_KEY", "NESSUS_SECRET_KEY"],
+  "config_toggles": ["NESSUS"]
+}

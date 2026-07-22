@@ -1,5 +1,8 @@
-# MASSWEB MODE #####################################################################################################
+# MASSPORTSCAN MODE #################################################################################################
 if [[ "$MODE" = "massportscan" ]]; then
+  MODE_NAME="massportscan"
+  MODE_DESCRIPTION="Mass port scan across multiple targets"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ -z "$FILE" ]]; then
     logo
     echo "You need to specify a list of targets (ie. -f <targets.txt>) to scan."

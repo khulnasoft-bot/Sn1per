@@ -1,0 +1,8 @@
+{
+  "name": "commix",
+  "version": "1.0.0",
+  "description": "Automated command injection exploitation (commix)",
+  "tools": ["commix"],
+  "variables": ["TARGET", "LOOT_DIR"],
+  "config_toggles": ["CMD_EXEC_EXPLOIT"]
+}

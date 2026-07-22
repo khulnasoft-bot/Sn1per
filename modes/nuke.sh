@@ -1,5 +1,8 @@
 # NUKE MODE #####################################################################################################
 if [[ "$MODE" = "nuke" ]]; then
+  MODE_NAME="nuke"
+  MODE_DESCRIPTION="Aggressive full-scale scan with brute force"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ -z "$FILE" ]]; then
     logo
     echo "You need to specify a list of targets (ie. -f <targets.txt>) to scan."

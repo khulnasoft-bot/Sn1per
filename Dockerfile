@@ -17,15 +17,11 @@ RUN set -x \
         && apt -yqq update \
         && apt -yqq full-upgrade \
         && apt clean
-RUN apt install --yes metasploit-framework
-
-RUN sed -i 's/systemctl status ${PG_SERVICE}/service ${PG_SERVICE} status/g' /usr/bin/msfdb && \
-    service postgresql start && \
-    msfdb reinit
+RUN apt install --yes metasploit-framework git bash \
+    && apt clean
 
 WORKDIR /usr/src/app
 
-RUN apt --yes install git bash
 RUN git clone https://github.com/1N3/Sn1per.git \
     && cd Sn1per \
     && ./install.sh \

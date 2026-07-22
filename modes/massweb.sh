@@ -1,5 +1,8 @@
 # MASSWEB MODE #####################################################################################################
 if [[ "$MODE" = "massweb" ]]; then
+  MODE_NAME="massweb"
+  MODE_DESCRIPTION="Mass web application scan across multiple targets"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ -z "$FILE" ]]; then
     logo
     echo "You need to specify a list of targets (ie. -f <targets.txt>) to scan."

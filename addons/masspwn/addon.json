@@ -1,0 +1,10 @@
+{
+  "name": "masspwn",
+  "version": "1.0.0",
+  "description": "Mass exploitation framework — recon + vuln detection + targeted exploitation across many targets",
+  "author": "Sn1per",
+  "dependencies": ["metasploit"],
+  "tools": ["msfconsole", "nmap", "curl"],
+  "modes": ["masspwn"],
+  "plugins": ["metasploit-pwn", "autoexploit"]
+}

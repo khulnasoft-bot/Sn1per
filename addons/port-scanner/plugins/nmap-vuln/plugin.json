@@ -1,0 +1,8 @@
+{
+  "name": "nmap-vuln",
+  "version": "1.0.0",
+  "description": "Nmap NSE vulnerability scripts scanner",
+  "tools": ["nmap"],
+  "variables": ["TARGET"],
+  "config_toggles": ["NMAP_SCRIPTS"]
+}

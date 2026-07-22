@@ -1,0 +1,10 @@
+{
+  "name": "bruteforce",
+  "version": "1.0.0",
+  "description": "Service-aware credential brute-forcing (SSH, FTP, SMTP, MySQL, PostgreSQL, SMB, RDP, HTTP)",
+  "author": "Sn1per",
+  "dependencies": ["hydra", "medusa", "crowbar"],
+  "tools": ["hydra", "medusa", "crowbar"],
+  "modes": ["bruteforce-enhanced"],
+  "plugins": ["hydra", "medusa", "crowbar"]
+}

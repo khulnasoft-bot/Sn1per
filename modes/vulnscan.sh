@@ -1,5 +1,8 @@
-# FULLPORTONLY MODE
+# VULNSCAN MODE
 if [[ "$MODE" = "vulnscan" ]]; then
+  MODE_NAME="vulnscan"
+  MODE_DESCRIPTION="Vulnerability scan using OpenVAS and Nmap"
+  MODE_REQUIRED_VARS=(TARGET LOOT_DIR)
   if [[ "$REPORT" = "1" ]]; then
     args="-t $TARGET"
     if [[ ! -z "$WORKSPACE" ]]; then

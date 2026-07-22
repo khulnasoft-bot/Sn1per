@@ -1,0 +1,47 @@
+site:TARGET intitle:"index of" (passwd|shadow|config|conf)
+site:TARGET filetype:sql ("INSERT INTO"|"CREATE TABLE")
+site:TARGET filetype:env ("DB_PASSWORD"|"API_KEY"|"SECRET")
+site:TARGET filetype:log ("password"|"username"|"login failed")
+site:TARGET filetype:bak (passwd|config|db)
+site:TARGET filetype:yml ("database"|"password"|"api_key")
+site:TARGET filetype:json ("api_key"|"api_secret"|"client_secret")
+site:TARGET filetype:xml ("<password>"|"<connstring>")
+site:TARGET filetype:pdf ("password"|"confidential"|"internal only")
+site:TARGET filetype:xls ("password"|"username"|"email")
+site:TARGET filetype:xlsx ("password"|"username"|"email")
+site:TARGET filetype:doc ("password"|"username")
+site:TARGET filetype:csv ("password"|"cc_number"|"ssn")
+site:TARGET filetype:txt ("password"|"login"|"username")
+site:TARGET ext:log ("password"|"username")
+site:TARGET ext:sql ("INSERT INTO"|"DROP TABLE")
+site:TARGET ext:env ("DB_")
+site:TARGET ext:bak ("backup"|"copy")
+site:TARGET ext:swp ("<?php"|"<?")
+site:TARGET ext:old ("backup"|"password")
+site:TARGET ext:orig ("<?php"|"config")
+site:TARGET ext:inc ("<?php"|"<?")
+site:TARGET ext:conf ("password"|"username")
+site:TARGET ext:cfg ("password"|"username")
+site:TARGET ext:ini ("password"|"db_")
+site:TARGET ext:lst ("password"|"user")
+site:TARGET ext:dat ("password"|"user")
+site:TARGET ext:sav ("password"|"admin")
+site:TARGET ext:dmp ("password"|"user")
+site:TARGET ext:rdp ("password"|"username")
+site:TARGET inurl:"phpinfo.php"
+site:TARGET inurl:"info.php"
+site:TARGET inurl:"test.php"
+site:TARGET inurl:"config.php.bak"
+site:TARGET inurl:"config.php.old"
+site:TARGET inurl:"db_backup"
+site:TARGET inurl:"backup"
+site:TARGET inurl:"wp-config"
+site:TARGET inurl:"config.php~"
+site:TARGET inurl:"config.php.swp"
+site:TARGET inurl:".git"
+site:TARGET inurl:".svn"
+site:TARGET inurl:".DS_Store"
+site:TARGET inurl:"robots.txt" disallow
+site:TARGET inurl:"sitemap.xml"
+site:TARGET inurl:"crossdomain.xml"
+site:TARGET inurl:"clientaccesspolicy.xml"

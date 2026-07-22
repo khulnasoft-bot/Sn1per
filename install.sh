@@ -480,6 +480,10 @@ install_go_tools() {
         "github.com/OWASP/Amass/v3/...@master:amass"
         "github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest:subfinder"
         "github.com/1N3/dirdar@latest:dirdar"
+        "github.com/tomnomnom/gron@latest:gron"
+        "github.com/tomnomnom/assetfinder@latest:assetfinder"
+        "github.com/tomnomnom/gf@latest:gf"
+        "github.com/tomnomnom/fff@latest:fff"
     )
     
     for tool_info in "${go_tools[@]}"; do
@@ -839,6 +843,52 @@ setup_configuration() {
         if [[ "$USER" != "root" ]] && [[ -f /home/$USER/.Xauthority ]]; then
             cp -a /home/$USER/.Xauthority /root/.Xauthority 2>/dev/null || true
             chown root:root /root/.Xauthority 2>/dev/null || true
+        fi
+    fi
+    
+    # Setup gf patterns (if gf is installed)
+    setup_gf_patterns
+}
+
+setup_gf_patterns() {
+    echo -e "$OKBLUE[*]$RESET Setting up gf patterns..."
+    
+    local gf_dir
+    if [[ "$OS" != "macos" ]]; then
+        gf_dir="/root/.gf"
+    else
+        gf_dir="$HOME/.gf"
+    fi
+    
+    mkdir -p "$gf_dir" 2>/dev/null || true
+    
+    if [[ -d "$INSTALL_DIR/gf_patterns" ]]; then
+        cp -f "$INSTALL_DIR/gf_patterns"/*.json "$gf_dir/" 2>/dev/null || true
+        echo -e "$OKGREEN[✓]$RESET Copied gf patterns to $gf_dir"
+    else
+        echo -e "$OKORANGE[!]$RESET gf_patterns directory not found at $INSTALL_DIR/gf_patterns"
+    fi
+    
+    # Setup gf bash completion
+    local gf_completion
+    gf_completion=$(find "$HOME/go/pkg/mod/github.com/tomnomnom" -name "gf-completion.bash" 2>/dev/null | head -n 1)
+    if [[ -z "$gf_completion" ]]; then
+        gf_completion="$HOME/go/src/github.com/tomnomnom/gf/gf-completion.bash"
+    fi
+    if [[ -z "$gf_completion" ]]; then
+        gf_completion=$(find /usr -path "*/tomnomnom/gf*/gf-completion.bash" 2>/dev/null | head -n 1)
+    fi
+    
+    if [[ -f "$gf_completion" ]]; then
+        local rc_file
+        if [[ "$OS" != "macos" ]]; then
+            rc_file="/root/.bashrc"
+        else
+            rc_file="$HOME/.bashrc"
+        fi
+        if ! grep -q "gf-completion" "$rc_file" 2>/dev/null; then
+            echo "source $gf_completion" >> "$rc_file" 2>/dev/null || true
+            echo -e "$OKGREEN[✓]$RESET Added gf completion to $rc_file"
         fi
     fi
 }

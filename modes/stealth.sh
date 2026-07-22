@@ -258,6 +258,15 @@ if [[ "$MODE" = "stealth" ]]; then
       fi
     fi
     source $INSTALL_DIR/modes/static-grep-search.sh
+    source $INSTALL_DIR/modes/gf-search.sh
+    source $INSTALL_DIR/modes/fff-fetch.sh
+    source $INSTALL_DIR/modes/dork-search.sh
+    source $INSTALL_DIR/modes/content-analysis.sh
+    source $INSTALL_DIR/modes/param-fuzz.sh
+    source $INSTALL_DIR/modes/post-fuzz.sh
+    source $INSTALL_DIR/modes/internal-spider.sh
+    source $INSTALL_DIR/modes/dir-fuzz.sh
+    source $INSTALL_DIR/modes/wordlist-gen.sh
     if [[ "$WEB_JAVASCRIPT_ANALYSIS" == "1" ]]; then
       source $INSTALL_DIR/modes/javascript-analysis.sh
     fi
@@ -415,6 +424,15 @@ if [[ "$MODE" = "stealth" ]]; then
       fi
     fi
     source $INSTALL_DIR/modes/static-grep-search.sh
+    source $INSTALL_DIR/modes/gf-search.sh
+    source $INSTALL_DIR/modes/fff-fetch.sh
+    source $INSTALL_DIR/modes/dork-search.sh
+    source $INSTALL_DIR/modes/content-analysis.sh
+    source $INSTALL_DIR/modes/param-fuzz.sh
+    source $INSTALL_DIR/modes/post-fuzz.sh
+    source $INSTALL_DIR/modes/internal-spider.sh
+    source $INSTALL_DIR/modes/dir-fuzz.sh
+    source $INSTALL_DIR/modes/wordlist-gen.sh
     if [[ "$WEB_JAVASCRIPT_ANALYSIS" == "1" ]]; then
       source $INSTALL_DIR/modes/javascript-analysis.sh
     fi

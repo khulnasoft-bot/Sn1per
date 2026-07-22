@@ -1,9 +1,14 @@
+_sniper_github_latest_ver() {
+  curl --connect-timeout 5 -s \
+    https://api.github.com/repos/1N3/Sn1per/tags 2>/dev/null | \
+    jq -r '.[0].name // empty' 2>/dev/null
+}
+
 sniper_check_online() {
   ONLINE=$(curl --connect-timeout 3 --insecure -s \
     "https://sn1persecurity.com/community/updates.txt?$VER&mid=$(cat /etc/machine-id 2>/dev/null)" 2>/dev/null)
   if [[ -z "$ONLINE" ]]; then
-    ONLINE=$(curl --connect-timeout 3 -s \
-      https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",' | head -1 | cut -c11-13)
+    ONLINE=$(_sniper_github_latest_ver)
     if [[ -z "$ONLINE" ]]; then
       ONLINE="0"
       echo -e "$OKBLUE[*]$RESET Checking for active internet connection ${OKBLUE}[${OKRED}FAIL${RESET}${OKBLUE}]"
@@ -21,8 +26,7 @@ sniper_check_online() {
 sniper_check_update() {
   if [[ "$ENABLE_AUTO_UPDATES" == "1" ]] && [[ "$ONLINE" == "1" ]]; then
     local latest
-    latest=$(curl --connect-timeout 5 -s \
-      https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",' | head -1 | cut -c11-13)
+    latest=$(_sniper_github_latest_ver)
     if [[ "$latest" != "$VER" ]]; then
       echo -e "${OKBLUE}[${OKRED}i${RESET}${OKBLUE}] sniper v$latest is available to download... To update, type${OKRED} \"sniper -u\" $RESET"
     fi
@@ -38,8 +42,7 @@ sniper_update() {
     return
   fi
   local latest
-  latest=$(curl --connect-timeout 5 -s \
-    https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",' | head -1 | cut -c11-13)
+  latest=$(_sniper_github_latest_ver)
   if [[ "$latest" == "$VER" ]]; then
     echo "Already up to date."
     return

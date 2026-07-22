@@ -10,6 +10,7 @@ source "$SN1PER_ROOT/lib/logging.sh"
 source "$SN1PER_ROOT/lib/workspace.sh"
 source "$SN1PER_ROOT/lib/nmap-parser.sh"
 source "$SN1PER_ROOT/lib/mode-skeleton.sh"
+source "$SN1PER_ROOT/lib/json.sh"
 
 FIXTURES_DIR="$SN1PER_ROOT/tests/fixtures"
 

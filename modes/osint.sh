@@ -86,19 +86,34 @@ if [[ "$OSINT" = "1" ]]; then
 		echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
 		echo -e "$OKRED COLLECTING OSINT FROM URLSCAN.IO $RESET"
 		echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-		curl --insecure -L -s "https://urlscan.io/api/v1/search/?q=domain:$TARGET" 2> /dev/null | egrep "country|server|domain|ip|asn|$TARGET|prt"| sort -u | tee $LOOT_DIR/osint/urlscanio-$TARGET.txt 2> /dev/null
+		_urlscan=$(curl --insecure -L -s "https://urlscan.io/api/v1/search/?q=domain:$TARGET" 2>/dev/null)
+		echo "$_urlscan" > "$LOOT_DIR/osint/urlscanio-$TARGET.json"
+		sniper_json_gron_grep "$LOOT_DIR/osint/urlscanio-$TARGET.json" "country|server|domain|ip|asn|$TARGET|prt" > "$LOOT_DIR/osint/urlscanio-$TARGET.txt"
+		if command -v gron &>/dev/null; then
+			echo "$_urlscan" | gron 2>/dev/null > "$LOOT_DIR/osint/urlscanio-$TARGET.gron.txt" || true
+		fi
 	fi
 	if [[ "$HUNTERIO" == "1" ]]; then
 		echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
 		echo -e "$OKRED GATHERING EMAILS VIA HUNTER.IO $RESET"
 		echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-		curl -s "https://api.hunter.io/v2/domain-search?domain=$TARGET&api_key=$HUNTERIO_KEY" | egrep "name|value|domain|company|uri|position|phone" 2> /dev/null | tee $LOOT_DIR/osint/hunterio-$TARGET.txt 2> /dev/null
+		_hunter=$(curl -s "https://api.hunter.io/v2/domain-search?domain=$TARGET&api_key=$HUNTERIO_KEY" 2>/dev/null)
+		echo "$_hunter" > "$LOOT_DIR/osint/hunterio-$TARGET.json"
+		sniper_json_gron_grep "$LOOT_DIR/osint/hunterio-$TARGET.json" "name|value|domain|company|uri|position|phone" > "$LOOT_DIR/osint/hunterio-$TARGET.txt"
+		if command -v gron &>/dev/null; then
+			echo "$_hunter" | gron 2>/dev/null > "$LOOT_DIR/osint/hunterio-$TARGET.gron.txt" || true
+		fi
 	fi
 	if [[ "$TOMBAIO" == "1" ]]; then
 		echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
 		echo -e "$OKRED GATHERING EMAILS VIA TOMBA.IO $RESET"
 		echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-		curl -H "X-Tomba-Key: $TOMBAIO_KEY" -H "X-Tomba-Secret: $TOMBAIO_SECRET" -s "https://api.tomba.io/v1/domain-search?domain=$TARGET" | egrep "email|organization|uri|position|phone" 2> /dev/null | tee $LOOT_DIR/osint/tombaio$TARGET.txt 2> /dev/null
+		_tomba=$(curl -H "X-Tomba-Key: $TOMBAIO_KEY" -H "X-Tomba-Secret: $TOMBAIO_SECRET" -s "https://api.tomba.io/v1/domain-search?domain=$TARGET" 2>/dev/null)
+		echo "$_tomba" > "$LOOT_DIR/osint/tombaio-$TARGET.json"
+		sniper_json_gron_grep "$LOOT_DIR/osint/tombaio-$TARGET.json" "email|organization|uri|position|phone" > "$LOOT_DIR/osint/tombaio-$TARGET.txt"
+		if command -v gron &>/dev/null; then
+			echo "$_tomba" | gron 2>/dev/null > "$LOOT_DIR/osint/tombaio-$TARGET.gron.txt" || true
+		fi
 	fi
 	if [[ "$METASPLOIT_EXPLOIT" == "1" ]]; then
 		echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"

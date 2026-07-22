@@ -45,7 +45,7 @@ report_cleanup() {
   chmod 777 -Rf "$loot_dir" 2>/dev/null
   cd "$loot_dir/screenshots/" 2>/dev/null
   find "$loot_dir/screenshots/" -type f -size -9000c -delete 2>/dev/null
-  find "$loot_dir/nmap/" "$loot_dir/ips/" "$loot_dir/osint/" "$loot_dir/vulnerabilities/" -type f -size -1c -delete 2>/dev/null
+  find "$loot_dir/nmap/" "$loot_dir/ips/" "$loot_dir/osint/" "$loot_dir/vulnerabilities/" "$loot_dir/domains/" -type f -size -1c -delete 2>/dev/null
 }
 
 report_msf_import() {

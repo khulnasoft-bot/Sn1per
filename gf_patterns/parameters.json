@@ -1,0 +1,6 @@
+{
+    "flags": "-iE",
+    "patterns": [
+        "template=","preview=","id=","view=","activity=","name=","content=","redirect=","access=","admin=","dbg=","debug=","edit=","grant=","test=","alter=","clone=","create=","delete=","disable=","enable=","exec=","execute=","load=","make=","modify=","rename=","reset=","shell=","toggle=","adm=","root=","cfg=","dest=","uri=","path=","continue=","url=","window=","next=","data=","reference=","site=","html=","val=","validate=","domain=","callback=","return=","page=","feed=","host=","port=","to=","out=","dir=","show=","navigation=","open=","file=","document=","folder=","pg=","php_path=","style=","doc=","img=","filename=","select=","report=","role=","update=","query=","user=","sort=","where=","search=","params=","process=","row=","table=","from=","sel=","results=","sleep=","fetch=","order=","keyword=","column=","field=","string=","number=","filter=","checkout=","checkout_url=","destination=","file_name=","file_url=","folder_url=","from_url=","go=","goto=","image_url=","img_url=","load_file=","load_url=","login_url=","logout=","next_page=","page_url=","redir=","redirect_uri=","request=","return_to=","return_url=","rurl=","success_url"
+    ]
+}

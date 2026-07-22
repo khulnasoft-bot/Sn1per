@@ -95,7 +95,12 @@ if [[ "$RECON" = "1" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     echo -e "$OKRED GATHERING PROJECT SONAR SUBDOMAINS $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-    curl -fsSL "https://dns.bufferover.run/dns?q=.$TARGET" | sed 's/\"//g' | cut -f2 -d "," | grep -v "<BR>" | sort -u | grep $TARGET > $LOOT_DIR/domains/domains-$TARGET-projectsonar.txt 2> /dev/null
+    curl -fsSL "https://dns.bufferover.run/dns?q=.$TARGET" > "$LOOT_DIR/domains/domains-$TARGET-projectsonar.json" 2> /dev/null
+    if command -v gron &>/dev/null; then
+      gron "$LOOT_DIR/domains/domains-$TARGET-projectsonar.json" 2>/dev/null | grep -oP 'RRset.*"value":".*?\.'"$TARGET"'"' | grep -oP '"value":"[^"]+' | sed 's/"value":"//' | sort -u > "$LOOT_DIR/domains/domains-$TARGET-projectsonar.txt"
+    else
+      cat "$LOOT_DIR/domains/domains-$TARGET-projectsonar.json" | sed 's/"//g' | cut -f2 -d "," | grep -v "<BR>" | sort -u | grep $TARGET > "$LOOT_DIR/domains/domains-$TARGET-projectsonar.txt" 2> /dev/null
+    fi
     wc -l $LOOT_DIR/domains/domains-$TARGET-projectsonar.txt 2> /dev/null
   fi
   if [[ "$GITHUB_SUBDOMAINS" = "1" ]]; then
@@ -110,6 +115,13 @@ if [[ "$RECON" = "1" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     curl -s "https://rapiddns.io/subdomain/$TARGET?full=1&down=1#exportData()" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | sort -u | grep "$TARGET" | cut -d\/ -f3 2> /dev/null > $LOOT_DIR/domains/domains-$TARGET-rapiddns.txt 2> /dev/null
   fi
+  if [[ "$ASSETFINDER" = "1" ]]; then
+    echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
+    echo -e "$OKRED GATHERING SUBDOMAINS VIA ASSETFINDER $RESET"
+    echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
+    assetfinder --subs-only $TARGET 2> /dev/null | sort -u > $LOOT_DIR/domains/domains-$TARGET-assetfinder.txt
+    wc -l $LOOT_DIR/domains/domains-$TARGET-assetfinder.txt 2> /dev/null
+  fi
   cat $LOOT_DIR/domains/domains-$TARGET-crt.txt 2> /dev/null > $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
   cat $LOOT_DIR/domains/domains-$TARGET-spyse.txt /dev/null >> $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
   cat $LOOT_DIR/domains/domains-$TARGET.txt 2> /dev/null >> $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
@@ -120,6 +132,7 @@ if [[ "$RECON" = "1" ]]; then
   cat $LOOT_DIR/domains/domains-$TARGET-shodan-sorted.txt 2>/dev/null >> $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
   cat $LOOT_DIR/domains/domains-$TARGET-github.txt 2> /dev/null >> $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
   cat $LOOT_DIR/domains/domains-$TARGET-rapiddns.txt 2> /dev/null >> $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
+  cat $LOOT_DIR/domains/domains-$TARGET-assetfinder.txt 2> /dev/null >> $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
   cat $LOOT_DIR/domains/targets.txt 2> /dev/null >> $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
   sed -i '/^$/d' $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null
   sed -i '/^$/d' $LOOT_DIR/domains/domains-$TARGET.txt 2> /dev/null

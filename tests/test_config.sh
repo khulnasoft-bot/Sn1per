@@ -91,6 +91,7 @@ test_config_osint_recon_toggles() {
   [[ "$WHOIS" == "1" ]] || return 1
   [[ "$THEHARVESTER" == "1" ]] || return 1
   [[ "$CRTSH" == "1" ]] || return 1
+  [[ "$ASSETFINDER" == "0" ]] || return 1
 }
 
 test_config_wordlist_paths_use_install_dir() {

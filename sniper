@@ -13,6 +13,7 @@ source "$INSTALL_DIR/lib/mode-skeleton.sh"
 source "$INSTALL_DIR/lib/workspace.sh"
 source "$INSTALL_DIR/lib/update.sh"
 source "$INSTALL_DIR/lib/cli.sh"
+source "$INSTALL_DIR/lib/json.sh"
 source "$INSTALL_DIR/lib/reports.sh"
 
 sniper_require_root

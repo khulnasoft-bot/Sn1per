@@ -100,3 +100,53 @@ test_config_wordlist_paths_use_install_dir() {
   [[ "$WEB_BRUTE_STEALTH" == "$SN1PER_ROOT/wordlists/web-brute-stealth.txt" ]] || return 1
   [[ "$DOMAINS_DEFAULT" == "$SN1PER_ROOT/wordlists/domains-default.txt" ]] || return 1
 }
+
+test_config_env_override_nmap_options() {
+  INSTALL_DIR="$SN1PER_ROOT"
+  SNIPER_NMAP_OPTIONS="-sV --top-ports 1000"
+  NMAP_OPTIONS=""
+  sniper_load_config "$SN1PER_ROOT/conf" "$SN1PER_ROOT/sniper.conf"
+  [[ "$NMAP_OPTIONS" == "-sV --top-ports 1000" ]] || return 1
+  unset SNIPER_NMAP_OPTIONS
+}
+
+test_config_env_override_quick_ports() {
+  INSTALL_DIR="$SN1PER_ROOT"
+  SNIPER_QUICK_PORTS="22,80"
+  QUICK_PORTS=""
+  sniper_load_config "$SN1PER_ROOT/conf" "$SN1PER_ROOT/sniper.conf"
+  [[ "$QUICK_PORTS" == "22,80" ]] || return 1
+  unset SNIPER_QUICK_PORTS
+}
+
+test_config_validate_passes_with_minimal_config() {
+  INSTALL_DIR="$SN1PER_ROOT"
+  LOOT_DIR="$INSTALL_DIR/loot/test"
+  NMAP_OPTIONS="--open"
+  QUICK_PORTS="22,80"
+  sniper_validate_config "normal"
+}
+
+test_config_validate_warns_missing_install_dir() {
+  INSTALL_DIR="/nonexistent"
+  LOOT_DIR="/tmp"
+  NMAP_OPTIONS="--open"
+  QUICK_PORTS="22,80"
+  sniper_validate_config "normal" && return 1 || return 0
+}
+
+test_config_validate_warns_no_ports() {
+  INSTALL_DIR="$SN1PER_ROOT"
+  LOOT_DIR="/tmp"
+  NMAP_OPTIONS=""
+  DEFAULT_PORTS=""
+  QUICK_PORTS=""
+  sniper_validate_config "normal" && return 1 || return 0
+}
+
+test_config_env_override_does_not_affect_unprefixed_vars() {
+  INSTALL_DIR="$SN1PER_ROOT"
+  local MY_CUSTOM_VAR="should-stay"
+  sniper_load_config "$SN1PER_ROOT/conf" "$SN1PER_ROOT/sniper.conf"
+  [[ "$MY_CUSTOM_VAR" == "should-stay" ]] || return 1
+}

@@ -1,0 +1,8 @@
+{
+  "name": "whatweb",
+  "version": "1.0.0",
+  "description": "WhatWeb web technology fingerprinting",
+  "tools": ["whatweb"],
+  "variables": ["TARGET", "LOOT_DIR"],
+  "config_toggles": ["WHATWEB"]
+}

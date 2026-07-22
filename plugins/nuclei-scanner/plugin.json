@@ -1,0 +1,8 @@
+{
+  "name": "nuclei-scanner",
+  "version": "1.0.0",
+  "description": "Nuclei vulnerability scanner",
+  "tools": ["nuclei"],
+  "variables": ["TARGET", "LOOT_DIR"],
+  "config_toggles": ["NUCLEI"]
+}

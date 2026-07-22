@@ -58,4 +58,63 @@ sniper_load_config() {
     source "$api_config"
     echo -e "$OKBLUE[*]$RESET Loaded API keys from $api_config ${OKBLUE}[${OKGREEN}OK${RESET}${OKBLUE}]$RESET"
   fi
+
+  sniper_apply_env_overrides
+}
+
+sniper_apply_env_overrides() {
+  local varname snipref val
+  for varname in NMAP_OPTIONS DEFAULT_PORTS QUICK_PORTS FULL_PORTSCAN_PORTS \
+                 THREADS MAX_HOSTS BURP_PORT BURP_HOST \
+                 MSF_LHOST MSF_LPORT SLACK_NOTIFICATIONS; do
+    snipref="SNIPER_${varname}"
+    val="${!snipref}"
+    if [[ -n "$val" ]]; then
+      printf -v "$varname" "%s" "$val"
+      echo -e "$OKBLUE[*]$RESET Env override: $OKGREEN$varname$RESET = $val"
+    fi
+  done
+}
+
+# Validate that required config variables are set and warn about common issues.
+# Call this after sniper_load_config and before entering a mode.
+sniper_validate_config() {
+  local mode="${1:-normal}"
+  local errors=0
+
+  local required_vars=(INSTALL_DIR LOOT_DIR)
+  for var in "${required_vars[@]}"; do
+    if [[ -z "${!var}" ]]; then
+      log_warn "Required config variable '$var' is not set"
+      errors=1
+    fi
+  done
+
+  if [[ -n "${INSTALL_DIR:-}" && ! -d "$INSTALL_DIR" ]]; then
+    log_warn "INSTALL_DIR=$INSTALL_DIR does not exist"
+    errors=1
+  fi
+
+  if [[ -z "${DEFAULT_PORTS:-}" && -z "${QUICK_PORTS:-}" ]]; then
+    log_warn "Neither DEFAULT_PORTS nor QUICK_PORTS is defined — nmap scans may fail"
+    errors=1
+  fi
+
+  if [[ "${NMAP_SCRIPTS:-0}" == "1" && -z "${NMAP_OPTIONS:-}" ]]; then
+    log_warn "NMAP_SCRIPTS is enabled but NMAP_OPTIONS is empty"
+  fi
+
+  if [[ "${SC0PE_VULNERABLITY_SCANNER:-0}" == "1" ]]; then
+    if [[ ! -d "${INSTALL_DIR:-}/templates/active" ]]; then
+      log_warn "SC0PE active templates directory not found at \$INSTALL_DIR/templates/active"
+    fi
+  fi
+
+  if [[ "${SLACK_NOTIFICATIONS:-0}" == "1" ]]; then
+    if [[ ! -f "${INSTALL_DIR:-}/bin/slack.sh" ]]; then
+      log_warn "SLACK_NOTIFICATIONS is enabled but bin/slack.sh not found"
+    fi
+  fi
+
+  return $errors
 }

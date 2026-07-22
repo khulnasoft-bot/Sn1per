@@ -1,0 +1,8 @@
+{
+  "name": "nmap-scanner",
+  "version": "1.0.0",
+  "description": "Nmap port scanning with service detection and NSE scripts",
+  "tools": ["nmap"],
+  "variables": ["TARGET", "LOOT_DIR"],
+  "config_toggles": ["NMAP_SCRIPTS"]
+}

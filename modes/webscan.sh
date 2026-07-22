@@ -89,16 +89,16 @@ if [[ "$MODE" = "webscan" ]]; then
     	echo -e "$OKRED RUNNING OWASP ZAP SCAN $RESET"
 		echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
 		echo "[i] Scanning: http://$TARGET/"
-    	sudo python3 /usr/share/sniper/bin/zap-scan.py "http://$TARGET/" 
+    	sudo python3 $INSTALL_DIR/bin/zap-scan.py "http://$TARGET/" 
     	DATE=$(date +"%Y%m%d%H%M")
-    	sudo grep "'" /usr/share/sniper/bin/zap-report.txt | cut -d\' -f2 | cut -d\\ -f1 > $LOOT_DIR/web/zap-report-$TARGET-http-$DATE.html
+    	sudo grep "'" $INSTALL_DIR/bin/zap-report.txt | cut -d\' -f2 | cut -d\\ -f1 > $LOOT_DIR/web/zap-report-$TARGET-http-$DATE.html
     	cp -f $LOOT_DIR/web/zap-report-$TARGET-http-$DATE.html $LOOT_DIR/web/zap-report-$TARGET-http.html 2> /dev/null
     	echo "[i] Scan complete."
     	echo "[+] Report saved to: $LOOT_DIR/web/zap-report-$TARGET-http-$DATE.html"
     	sleep 5
     	echo "[i] Scanning: https://$TARGET/"
-    	sudo python3 /usr/share/sniper/bin/zap-scan.py "https://$TARGET/"
-    	sudo grep "'" /usr/share/sniper/bin/zap-report.txt | cut -d\' -f2 | cut -d\\ -f1 > $LOOT_DIR/web/zap-report-$TARGET-https-$DATE.html
+    	sudo python3 $INSTALL_DIR/bin/zap-scan.py "https://$TARGET/"
+    	sudo grep "'" $INSTALL_DIR/bin/zap-report.txt | cut -d\' -f2 | cut -d\\ -f1 > $LOOT_DIR/web/zap-report-$TARGET-https-$DATE.html
     	cp -f $LOOT_DIR/web/zap-report-$TARGET-https-$DATE.html $LOOT_DIR/web/zap-report-$TARGET-https.html 2> /dev/null
     	echo "[i] Scan complete."
     	echo "[+] Report saved to: $LOOT_DIR/web/zap-report-$TARGET-https-$DATE.html"

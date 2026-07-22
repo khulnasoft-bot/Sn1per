@@ -3,7 +3,8 @@
 # By @xer0dayz - https://sn1persecurity.com
 #
 
-source /usr/share/sniper/sniper.conf 2> /dev/null
+SNIPER_DIR="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
+source "$SNIPER_DIR/sniper.conf" 2> /dev/null
 source /root/.sniper.conf 2> /dev/null
 source /root/.sniper_api_keys.conf 2> /dev/null
 

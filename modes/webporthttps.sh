@@ -341,7 +341,7 @@ if [[ "$MODE" = "webporthttps" ]]; then
       echo -e "$OKRED RUNNING JEXBOSS $RESET"
       echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
       cd /tmp/
-      python3 /usr/share/sniper/plugins/jexboss/jexboss.py -u https://$TARGET:${PORT} | tee $LOOT_DIR/web/jexboss-$TARGET-port${PORT}.raw
+      python3 $INSTALL_DIR/plugins/jexboss/jexboss.py -u https://$TARGET:${PORT} | tee $LOOT_DIR/web/jexboss-$TARGET-port${PORT}.raw
       sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" $LOOT_DIR/web/jexboss-$TARGET-port${PORT}.raw > $LOOT_DIR/web/jexboss-$TARGET-port${PORT}.txt 2> /dev/null
       rm -f $LOOT_DIR/web/jexboss-$TARGET-port${PORT}.raw 2> /dev/null
       cd $INSTALL_DIR
@@ -350,7 +350,7 @@ if [[ "$MODE" = "webporthttps" ]]; then
       echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
       echo -e "$OKRED RUNNING HTTP REQUEST SMUGGLING DETECTION $RESET"
       echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-      python3 /usr/share/sniper/plugins/smuggler/smuggler.py --no-color -u https://$TARGET:${PORT} | tee $LOOT_DIR/web/smuggler-$TARGET-port${PORT}.txt
+      python3 $INSTALL_DIR/plugins/smuggler/smuggler.py --no-color -u https://$TARGET:${PORT} | tee $LOOT_DIR/web/smuggler-$TARGET-port${PORT}.txt
     fi
     if [[ "$NUCLEI" = "1" ]]; then
       echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
@@ -395,9 +395,9 @@ if [[ "$MODE" = "webporthttps" ]]; then
       echo -e "$OKRED RUNNING OWASP ZAP SCAN $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     echo "[i] Scanning: https://$TARGET:$PORT/"
-      sudo python3 /usr/share/sniper/bin/zap-scan.py "https://$TARGET:$PORT/" 
+      sudo python3 $INSTALL_DIR/bin/zap-scan.py "https://$TARGET:$PORT/" 
       DATE=$(date +"%Y%m%d%H%M")
-      sudo grep "'" /usr/share/sniper/bin/zap-report.txt | cut -d\' -f2 | cut -d\\ -f1 > $LOOT_DIR/web/zap-report-$TARGET-https-$DATE.html
+      sudo grep "'" $INSTALL_DIR/bin/zap-report.txt | cut -d\' -f2 | cut -d\\ -f1 > $LOOT_DIR/web/zap-report-$TARGET-https-$DATE.html
       cp -f $LOOT_DIR/web/zap-report-$TARGET-https-$DATE.html $LOOT_DIR/web/zap-report-$TARGET-https.html 2> /dev/null
       echo "[i] Scan complete."
       echo "[+] Report saved to: $LOOT_DIR/web/zap-report-$TARGET-https-$DATE.html"

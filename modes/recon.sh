@@ -11,7 +11,7 @@ if [[ "$RECON" = "1" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     echo -e "$OKRED GATHERING DNS SUBDOMAINS VIA SUBLIST3R $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-    python3 /usr/share/sniper/plugins/Sublist3r/sublist3r.py -d $TARGET -vvv -o $LOOT_DIR/domains/domains-$TARGET.txt 2>/dev/null > /dev/null
+    python3 $INSTALL_DIR/plugins/Sublist3r/sublist3r.py -d $TARGET -vvv -o $LOOT_DIR/domains/domains-$TARGET.txt 2>/dev/null > /dev/null
     sed -ie 's/<BR>/\n/g' domains-$TARGET-full.txt 2> /dev/null
     mv -f $LOOT_DIR/domains/domains-$TARGET.txte $LOOT_DIR/domains/domains-$TARGET.txt 2> /dev/null
     wc -l $LOOT_DIR/domains/domains-$TARGET.txt 2> /dev/null
@@ -20,7 +20,7 @@ if [[ "$RECON" = "1" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     echo -e "$OKRED GATHERING DNS SUBDOMAINS VIA AMASS $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-    amass enum -ip -o $LOOT_DIR/domains/domains-$TARGET-amass.txt -rf /usr/share/sniper/plugins/massdns/lists/resolvers.txt -d $TARGET 2>/dev/null > /dev/null
+    amass enum -ip -o $LOOT_DIR/domains/domains-$TARGET-amass.txt -rf $INSTALL_DIR/plugins/massdns/lists/resolvers.txt -d $TARGET 2>/dev/null > /dev/null
     cut -d" " -f1 $LOOT_DIR/domains/domains-$TARGET-amass.txt 2>/dev/null | grep $TARGET > $LOOT_DIR/domains/domains-$TARGET-amass-sorted.txt
     cut -d" " -f2 $LOOT_DIR/domains/domains-$TARGET-amass.txt 2>/dev/null > $LOOT_DIR/ips/amass-ips-$TARGET.txt
     wc -l $LOOT_DIR/domains/domains-$TARGET-amass-sorted.txt
@@ -36,7 +36,7 @@ if [[ "$RECON" = "1" ]]; then
     echo -e "$OKRED GATHERING DNS SUBDOMAINS VIA SUBFINDER $RESET"
     echo -e "$OKBLUE[*]$RESET Running: subfinder -o $LOOT_DIR/domains/domains-$TARGET-subfinder.txt -d $TARGET -t 100 $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-    subfinder -o $LOOT_DIR/domains/domains-$TARGET-subfinder.txt -d $TARGET -nW -rL /sniper/wordlists/resolvers.txt -t $THREADS 2>/dev/null > /dev/null
+    subfinder -o $LOOT_DIR/domains/domains-$TARGET-subfinder.txt -d $TARGET -nW -rL $INSTALL_DIR/wordlists/resolvers.txt -t $THREADS 2>/dev/null > /dev/null
     wc -l $LOOT_DIR/domains/domains-$TARGET-subfinder.txt 2> /dev/null
   fi  
   if [[ "$DNSCAN" = "1" ]]; then
@@ -102,7 +102,7 @@ if [[ "$RECON" = "1" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     echo -e "$OKRED GATHERING GITHUB SUBDOMAINS $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-    python3 /usr/share/sniper/bin/github-subdomains.py -t $GITHUB_API_TOKEN -d $TARGET $LOOT_DIR/domains/domains-$TARGET-github.txt 2> /dev/null
+    python3 $INSTALL_DIR/bin/github-subdomains.py -t $GITHUB_API_TOKEN -d $TARGET $LOOT_DIR/domains/domains-$TARGET-github.txt 2> /dev/null
   fi
   if [[ "$RAPIDDNS" = "1" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
@@ -153,7 +153,7 @@ if [[ "$RECON" = "1" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     sort -u $LOOT_DIR/domains/domains-$TARGET-presorted-nowildcards.txt $LOOT_DIR/domains/domains-$TARGET-dnsgen.txt $LOOT_DIR/domains/domains-$TARGET-altdns.txt $LOOT_DIR/domains/domains-$TARGET-subbrute.txt 2> /dev/null > $LOOT_DIR/domains/domains-$TARGET-alldns.txt 2> /dev/null 
     wc -l $LOOT_DIR/domains/domains-$TARGET-alldns.txt 2> /dev/null
-    massdns -r /usr/share/sniper/plugins/massdns/lists/resolvers.txt $LOOT_DIR/domains/domains-$TARGET-alldns.txt -o S -t A -w $LOOT_DIR/domains/domains-$TARGET-massdns.txt > /dev/null
+    massdns -r $INSTALL_DIR/plugins/massdns/lists/resolvers.txt $LOOT_DIR/domains/domains-$TARGET-alldns.txt -o S -t A -w $LOOT_DIR/domains/domains-$TARGET-massdns.txt > /dev/null
     awk -F ". " '{print $1}' $LOOT_DIR/domains/domains-$TARGET-massdns.txt 2> /dev/null | grep -v "*" | sort -u > $LOOT_DIR/domains/domains-$TARGET-massdns-sorted.txt 2> /dev/null
     wc -l $LOOT_DIR/domains/domains-$TARGET-massdns-sorted.txt 2> /dev/null
     cat $LOOT_DIR/domains/domains-$TARGET-massdns-sorted.txt 2> /dev/null >> $LOOT_DIR/domains/domains-$TARGET-presorted.txt 2> /dev/null

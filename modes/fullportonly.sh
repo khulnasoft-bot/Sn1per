@@ -28,8 +28,8 @@ if [[ "$MODE" = "fullportonly" ]]; then
     /bin/bash "$INSTALL_DIR/bin/slack.sh" "[sn1persecurity.com] •?((¯°·._.• Started Sn1per scan: $TARGET [$MODE] (`date +"%Y-%m-%d %H:%M"`) •._.·°¯))؟•"
   fi
   echo "$TARGET" >> $LOOT_DIR/domains/targets.txt
-  if [[ -f "/usr/share/sniper/pro/.portscanner.conf" ]]; then
-    source /usr/share/sniper/pro/.portscanner.conf
+  if [[ -f "$INSTALL_DIR/pro/.portscanner.conf" ]]; then
+    source $INSTALL_DIR/pro/.portscanner.conf
   fi
   if [[ -z "$PORT" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"

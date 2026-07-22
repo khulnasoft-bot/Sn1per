@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE nmaprun PUBLIC "-//IDN nmap.org//DTD Nmap XML 1.04//EN" "https://svn.nmap.org/nmap/docs/nmaprun.dtd">
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<nmaprun scanner="nmap" args="nmap -p 22,80,443,8080 --open example.com" start="1234567890" version="7.80" xmloutputversion="1.04">
+<scaninfo type="connect" protocol="tcp" numservices="4" services="22,80,443,8080"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1234567890" endtime="1234567891">
+<status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="93.184.216.34" addrtype="ipv4"/>
+<hostnames>
+<hostname name="example.com" type="PTR"/>
+</hostnames>
+<ports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="closed" reason="reset" reason_ttl="64"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="80"/><osmatch name="Linux 2.6.32" accuracy="100" line="12345"><osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"/></osmatch></os>
+<host>
+</host>
+<tcpsequence index="I" difficulty="Perfect" values="ABCDEF,123456,7890AB"/>
+<ipidsequence class="Incremental" values="1,2,3"/>
+<tcptssequence class="200 ppm" values="AAAA,BBBB,CCCC"/>
+</host>
+<runstats><finished time="1234567891" timestr="2020-02-20 20:20:20" elapsed="1.23" summary="Nmap done at ..." exit="success"/><hosts up="1" down="0" total="1"/></runstats>
+</nmaprun>

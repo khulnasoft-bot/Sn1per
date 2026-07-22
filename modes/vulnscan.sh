@@ -34,7 +34,7 @@ if [[ "$MODE" = "vulnscan" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     echo -e "$OKRED RUNNING NESSUS VULNERABILITY SCAN $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-    bash /usr/share/sniper/bin/nessus.sh $TARGET $NESSUS_KEY $NESSUS_HOST $NESSUS_USERNAME $NESSUS_PASSWORD $NESSUS_POLICY_ID $LOOT_DIR
+    bash $INSTALL_DIR/bin/nessus.sh $TARGET $NESSUS_KEY $NESSUS_HOST $NESSUS_USERNAME $NESSUS_PASSWORD $NESSUS_POLICY_ID $LOOT_DIR
   fi
   if [[ "$OPENVAS" = "1" ]]; then
     sudo openvas-start 2> /dev/null > /dev/null

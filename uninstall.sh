@@ -24,12 +24,12 @@ echo -e "$RESET"
 echo -e "$OKORANGE + -- --=[https://sn1persecurity.com$RESET"
 echo ""
 
-INSTALL_DIR=/usr/share/sniper
+INSTALL_DIR=$(cd "$(dirname "$(readlink -f "$0")")" && pwd)
 
 echo -e "$OKRED[>]$RESET This script will uninstall sniper and remove ALL files under $INSTALL_DIR. Are you sure you want to continue?$RESET"
 read answer
 
-rm -Rf /usr/share/sniper/
+rm -Rf "$INSTALL_DIR"
 rm -f /usr/bin/sniper
 
 echo -e "$OKBLUE[*]$RESET Done!$RESET"

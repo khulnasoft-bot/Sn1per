@@ -13,7 +13,7 @@
       echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
       echo -e "$OKRED RUNNING INURLBR OSINT QUERIES $RESET"
       echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-      php /usr/share/sniper/bin/inurlbr.php --dork "site:$TARGET" -s inurlbr-$TARGET | tee $LOOT_DIR/osint/inurlbr-$TARGET
+      php $INSTALL_DIR/bin/inurlbr.php --dork "site:$TARGET" -s inurlbr-$TARGET | tee $LOOT_DIR/osint/inurlbr-$TARGET
       sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" $LOOT_DIR/osint/inurlbr-$TARGET > $LOOT_DIR/osint/inurlbr-$TARGET.txt 2> /dev/null
       rm -f $LOOT_DIR/osint/inurlbr-$TARGET
       rm -Rf output/ cookie.txt exploits.conf

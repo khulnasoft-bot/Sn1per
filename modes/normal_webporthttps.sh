@@ -170,7 +170,7 @@ if [[ "$MODE" = "web" ]]; then
       echo -e "$OKRED RUNNING JEXBOSS $RESET"
       echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
       cd /tmp/
-      python3 /usr/share/sniper/plugins/jexboss/jexboss.py -u https://$TARGET | tee $LOOT_DIR/web/jexboss-$TARGET-port443.raw
+      python3 $INSTALL_DIR/plugins/jexboss/jexboss.py -u https://$TARGET | tee $LOOT_DIR/web/jexboss-$TARGET-port443.raw
       sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" $LOOT_DIR/web/jexboss-$TARGET-port443.raw > $LOOT_DIR/web/jexboss-$TARGET-port443.txt 2> /dev/null
       rm -f $LOOT_DIR/web/jexboss-$TARGET-port443.raw 2> /dev/null
       cd $INSTALL_DIR
@@ -179,13 +179,13 @@ if [[ "$MODE" = "web" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     echo -e "$OKRED RUNNING HTTP REQUEST SMUGGLING DETECTION $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-    python3 /usr/share/sniper/plugins/smuggler/smuggler.py --no-color -u https://$TARGET | tee $LOOT_DIR/web/smuggler-$TARGET-port443.txt
+    python3 $INSTALL_DIR/plugins/smuggler/smuggler.py --no-color -u https://$TARGET | tee $LOOT_DIR/web/smuggler-$TARGET-port443.txt
   fi
   if [[ "$NUCLEI" = "1" ]]; then
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
     echo -e "$OKRED RUNNING NUCLEI SCAN $RESET"
     echo -e "${OKGREEN}====================================================================================${RESET}•x${OKGREEN}[`date +"%Y-%m-%d](%H:%M)"`${RESET}x•"
-    nuclei -silent -t /usr/share/sniper/plugins/nuclei-templates/ -c $THREADS -target https://$TARGET -o $LOOT_DIR/web/nuclei-https-10.0.0.19-port443.txt 
+    nuclei -silent -t $INSTALL_DIR/plugins/nuclei-templates/ -c $THREADS -target https://$TARGET -o $LOOT_DIR/web/nuclei-https-10.0.0.19-port443.txt 
   fi
   rm -f $LOOT_DIR/scans/running_${TARGET}_${MODE}.txt 2> /dev/null
   ls -lh $LOOT_DIR/scans/running_*.txt 2> /dev/null | wc -l 2> /dev/null > $LOOT_DIR/scans/tasks-running.txt
